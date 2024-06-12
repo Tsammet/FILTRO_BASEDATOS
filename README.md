@@ -24,7 +24,7 @@ WHERE cli.nombre = 'Juan Perez';
 ~~~mysql
 SELECT ped.id, men.nombre, depe.cantidad, depe.precio_unitario
 FROM pedidos AS ped
-INNER JOIN detalles_pedidos AS depe
+INNER JOIN detallespedidos AS depe
 ON depe.id_pedido = ped.id
 INNER JOIN menus AS men
 ON men.id = depe.id_menu;
@@ -53,7 +53,7 @@ WHERE men.precio > 10;
 ~~~mysql
 SELECT men.nombre, MAX(men.precio)
 FROM menus AS men
-INNER JOIN detalles_pedidos AS depe
+INNER JOIN detallespedidos AS depe
 ON depe.id_menu = men.id
 GROUP BY men.nombre
 ORDER BY MAX(men.precio) DESC
@@ -94,7 +94,7 @@ GROUP BY cli.nombre;
 
 ~~~mysql
 SELECT depe.id_pedido, men.nombre, depe.cantidad, depe.precio_unitario
-FROM detalles_pedidos AS depe
+FROM detallespedidos AS depe
 INNER JOIN menus AS men
 ON depe.id_menu = men.id
 INNER JOIN pedidos AS ped
@@ -148,7 +148,7 @@ IN odp_id_pedido INT
 )
 BEGIN 
 SELECT men.nombre, depe.cantidad, depe.precio_unitario 
-FROM detalles_pedidos AS depe
+FROM detallespedidos AS depe
 INNER JOIN menus AS men
 ON depe.id_menu = men.id
 WHERE depe.id_pedido = odp_id_pedido;
