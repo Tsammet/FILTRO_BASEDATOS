@@ -1,0 +1,37 @@
+CREATE DATABASE gourmet_delight;
+USE gourmet_delight;
+
+CREATE TABLE clientes(
+id INT PRIMARY KEY AUTO_INCREMENT,
+nombre VARCHAR(100) NOT NULL,
+correo_electronico VARCHAR(100) NOT NULL,
+telefono VARCHAR(15) NOT NULL,
+fecha_registro DATE NOT NULL
+);
+
+CREATE TABLE pedidos(
+id INT PRIMARY KEY AUTO_INCREMENT,
+id_cliente INT NOT NULL,
+fecha DATE,
+total DECIMAL(10,2),
+FOREIGN KEY(id_cliente) REFERENCES clientes(id)
+);
+
+CREATE TABLE menus(
+id INT PRIMARY KEY AUTO_INCREMENT,
+nombre VARCHAR(100),
+descripcion TEXT,
+precio DECIMAL(10,2)
+);
+
+CREATE TABLE detalles_pedidos(
+id_pedido INT NOT NULL,
+id_menu INT NOT NULL,
+cantidad INT,
+precio_unitario DECIMAL(10,2),
+PRIMARY KEY (id_pedido, id_menu),
+FOREIGN KEY(id_pedido) REFERENCES pedidos(id),
+FOREIGN KEY(id_menu) REFERENCES menus(id)
+);
+
+
